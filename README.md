@@ -151,8 +151,8 @@ Write the necessary code to allow:
 Given a `blockchain` data structure as previously specified, write a piece of code which will have the ability to:
 - check the consistency of a blockchain data structure. a `blockchain` will be considered as consistent when 
     - For each block:
-        - the data_hash is consistent with the serialized_payload.
-        - the previous_hash equals the previous block hash.
-        - the hash is consistent with the header.
-- find the last consistent block of a `blockchain` data structure and the reason of the inconsistency.
+        - the `payload_signature` is consistent with the serialized_payload.
+        - the `previous_block` equals the previous block `signature`.
+        - the `signature` is consistent with the header.
+- find the last consistent `block` of a `blockchain` data structure and the reason of the inconsistency.
 - print in a human readable format the contain of a `blockchain`.
