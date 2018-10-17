@@ -104,7 +104,7 @@ Write the necessary code to allow:
   - taking an Array as input. Each element of the array corresponds to a version of the payload (all blocks will be timestamped to the current time).
   - printing as a result a human readable `blockchain` data structure computed from the input.
 
-```
+```ruby
 # example output:
 [{:signature=>
    "25b820286a1167ed3485d8510bf7b15135467e1203da81590beca3d901b20293",
