@@ -55,42 +55,60 @@ Each `block` will have the following format:
 - `signature`: The signature of the `header` (computed using the same algorithm as the one used to compute the payload signature)
 
 
-The following code snippet illustrates what could look like our data structure (note that the hash value may not be correct in this example):
+The following code snippet illustrates what could look like our data structure:
  
 ```ruby
-# First Block
-{
-    signature: "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-    payload_serialized: "\x82\xA5hello\xA5world\xA4key1\xA6value1",
-    header: {
-      timestamp:  "2018-10-16T10:17:45Z",
-      previous_block: nil,
-      payload_signature: "3a87af5e8ceb519b74e02a2cfde90a12faa34f0f9142b033e5338acab58b18e5"
+[
+  {
+    :signature => "18cc6d51e125e7ad11f37928bd5ff7e04c1ab27409180d552f9ce6db6050187c",
+    :header => {
+      :timestamp => "2019-02-22T17:43:48Z",
+      :previous_block => nil,
+      :payload_signature => "3a87af5e8ceb519b74e02a2cfde90a12faa34f0f9142b033e5338acab58b18e5"},
+    :payload => {
+      "hello" => "world",
+      "key1" => "value1"
     }
-}
-
-# Second Block
-{
-    signature: "7e0b04850054fcdad9b4f9a4eecf77ac0f433fbf8788100d371a0e83398a6533",
-    payload_serialized: "\x82\xA5hello\xA5world\xA4key1\xABother_value",
-    header: {
-        timestamp: "2018-10-16T10:31:45Z",
-        previous_block: "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-        payload_signature: "7e0b04850054fcdad9b4f9a4eecf77ac0f433fbf8788100d371a0e83398a6533",
+  },
+  {
+    :signature => "b8b391cfda8d4e35dada2fc38102cbc408b4259ae3484d7feb00242d2edbec15",
+    :header => {
+      :timestamp => "2019-02-22T17:43:48Z",
+      :previous_block => "18cc6d51e125e7ad11f37928bd5ff7e04c1ab27409180d552f9ce6db6050187c",
+      :payload_signature => "7abc00bcc90ddce7c352c011b35760d2b1a5a0acd2abf856440090f3257c47bf"
+    },
+    :payload => {
+      "hello" => "world",
+      "key1" => "value1",
+      "key2" => "value2"
     }
-}
-
-# Third Block
-{
-    signature: "573a093cca64cfcd7f90748d3f6906dff85eaed99f45dc7693256b6d210209fa",
-    payload_serialized: "\x83\xA5hello\xA5world\xA4key1\xABother_value\xA4key2\xA9new value",
-    header: {
-        timestamp: "2018-10-16T10:31:45Z",
-        previous_block: "7e0b04850054fcdad9b4f9a4eecf77ac0f433fbf8788100d371a0e83398a6533",
-        payload_signature: "8df7148644ffa88f9fce4b43fd29776afb9c8b93e856097db332ed268604ad29",
+  },
+  {
+    :signature => "c5563a49e654d3c94719ca14afc4ce2b7cc0f7573938b85026e8fa9731b809d0",
+    :header => {
+      :timestamp => "2019-02-22T17:43:48Z",
+      :previous_block => "b8b391cfda8d4e35dada2fc38102cbc408b4259ae3484d7feb00242d2edbec15",
+      :payload_signature => "efaaa9f4a61f715d691193b883edd83d84765234dbc3be8c456d93f8a4ec2293"
+    },
+    :payload => {
+      "hello" => "world",
+      "key2" => "value2"
     }
-}
-
+  },
+  {
+    :signature => "4845bfd27ecc8e810a1145b4c90d0a66712ff139d68ebf1b2c55772f6d707783",
+    :header => {
+        :timestamp => "2019-02-22T17:43:48Z",
+        :previous_block => "c5563a49e654d3c94719ca14afc4ce2b7cc0f7573938b85026e8fa9731b809d0",
+        :payload_signature => "094ff398fcdca678695f9c909ee45fd9c6b0e34a465355943064b2beb6098c60"
+    },
+    :payload => {
+      "hello" => "world",
+      "key2" => "value2",
+      "another" => "value"
+    }
+  }
+]
 ```
 
 Write the necessary code which will allow to:
@@ -107,42 +125,41 @@ Write the necessary code to allow:
 ```ruby
 # example output:
 [{:signature=>
-   "25b820286a1167ed3485d8510bf7b15135467e1203da81590beca3d901b20293",
+   "18cc6d51e125e7ad11f37928bd5ff7e04c1ab27409180d552f9ce6db6050187c",
   :header=>
-   {:timestamp=>"2018-10-16T16:40:53Z",
+   {:timestamp=>"2019-02-22T17:43:48Z",
     :previous_block=>nil,
     :payload_signature=>
      "3a87af5e8ceb519b74e02a2cfde90a12faa34f0f9142b033e5338acab58b18e5"},
   :payload=>{"hello"=>"world", "key1"=>"value1"}},
  {:signature=>
-   "7128fdfbe9448990942233b4c19b50220b69db16b92272bbb4c4f98155117b0f",
+   "b8b391cfda8d4e35dada2fc38102cbc408b4259ae3484d7feb00242d2edbec15",
   :header=>
-   {:timestamp=>"2018-10-16T16:40:53Z",
+   {:timestamp=>"2019-02-22T17:43:48Z",
     :previous_block=>
-     "25b820286a1167ed3485d8510bf7b15135467e1203da81590beca3d901b20293",
+     "18cc6d51e125e7ad11f37928bd5ff7e04c1ab27409180d552f9ce6db6050187c",
     :payload_signature=>
      "7abc00bcc90ddce7c352c011b35760d2b1a5a0acd2abf856440090f3257c47bf"},
   :payload=>{"hello"=>"world", "key1"=>"value1", "key2"=>"value2"}},
  {:signature=>
-   "bd8ad64122ff667c3a23454f982edd324ee069716cd40c47ee34b2297905308f",
+   "c5563a49e654d3c94719ca14afc4ce2b7cc0f7573938b85026e8fa9731b809d0",
   :header=>
-   {:timestamp=>"2018-10-16T16:40:53Z",
+   {:timestamp=>"2019-02-22T17:43:48Z",
     :previous_block=>
-     "7128fdfbe9448990942233b4c19b50220b69db16b92272bbb4c4f98155117b0f",
+     "b8b391cfda8d4e35dada2fc38102cbc408b4259ae3484d7feb00242d2edbec15",
     :payload_signature=>
      "efaaa9f4a61f715d691193b883edd83d84765234dbc3be8c456d93f8a4ec2293"},
   :payload=>{"hello"=>"world", "key2"=>"value2"}},
  {:signature=>
-   "0ed7e9b8ee0ae52490ba69db334d3dc35148481ed9b34e17a20a4caa37f1864d",
+   "4845bfd27ecc8e810a1145b4c90d0a66712ff139d68ebf1b2c55772f6d707783",
   :header=>
-   {:timestamp=>"2018-10-16T16:40:53Z",
+   {:timestamp=>"2019-02-22T17:43:48Z",
     :previous_block=>
-     "bd8ad64122ff667c3a23454f982edd324ee069716cd40c47ee34b2297905308f",
+     "c5563a49e654d3c94719ca14afc4ce2b7cc0f7573938b85026e8fa9731b809d0",
     :payload_signature=>
      "094ff398fcdca678695f9c909ee45fd9c6b0e34a465355943064b2beb6098c60"},
   :payload=>{"hello"=>"world", "key2"=>"value2", "another"=>"value"}}]
-  
-``` 
+  ``` 
  
 ## Part 2: Audit a blockchain
  
