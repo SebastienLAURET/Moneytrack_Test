@@ -59,6 +59,7 @@ The following code snippet illustrates what could look like our data structure:
  
 ```ruby
 [
+  # first block
   {
     :signature => "18cc6d51e125e7ad11f37928bd5ff7e04c1ab27409180d552f9ce6db6050187c",
     :header => {
@@ -70,6 +71,7 @@ The following code snippet illustrates what could look like our data structure:
       "key1" => "value1"
     }
   },
+  # second block
   {
     :signature => "b8b391cfda8d4e35dada2fc38102cbc408b4259ae3484d7feb00242d2edbec15",
     :header => {
@@ -83,6 +85,7 @@ The following code snippet illustrates what could look like our data structure:
       "key2" => "value2"
     }
   },
+  # third block
   {
     :signature => "c5563a49e654d3c94719ca14afc4ce2b7cc0f7573938b85026e8fa9731b809d0",
     :header => {
@@ -95,6 +98,7 @@ The following code snippet illustrates what could look like our data structure:
       "key2" => "value2"
     }
   },
+  # fourth block
   {
     :signature => "4845bfd27ecc8e810a1145b4c90d0a66712ff139d68ebf1b2c55772f6d707783",
     :header => {
