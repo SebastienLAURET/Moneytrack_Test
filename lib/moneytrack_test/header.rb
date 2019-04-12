@@ -16,5 +16,13 @@ module MoneytrackTest
       }
       Payload.new(payload).signature
     end
+
+    def to_s()
+      str = "\theader\n"
+      str += "\t\ttimestamp = #{@timestamp}\n"
+      str += "\t\trevious_block = #{@previous_block}\n"
+      str += "\t\tpayload_signature = #{@payload_signature}\n"
+      str
+    end
   end
 end

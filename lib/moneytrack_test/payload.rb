@@ -27,5 +27,10 @@ module MoneytrackTest
      def sign!()
        @signature = self.sign
      end
+
+     def to_s()
+       str = "\tPayload\n"
+       str += "\t\tPayload = #{@payload}\n"
+     end
   end
 end
