@@ -9,7 +9,6 @@ module MoneytrackTest
        }
 
        @blockchain = self.sort_blockchain(blockchainTmp)
-
        check_timestamp()
      end
 

@@ -6,6 +6,18 @@ module MoneytrackTest
        @payload = Payload.new block[:payload]
        @header = Header.new block[:header][:timestamp], block[:header][:previous_block], block[:header][:payload_signature]
        @signature = block[:signature]
+       check_block
+     end
+
+     def check_block
+       if @signature != @header.make_signature
+         puts "ERROR: bockchain corrupt: header signature not correct"
+         exit();
+       end
+       if @header.payload_signature != @payload.sign
+         puts "ERROR: bockchain corrupt: Payload signature not correct"
+         exit();
+       end
      end
 
      def create(payload, previous_block)
