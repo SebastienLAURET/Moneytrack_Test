@@ -18,6 +18,7 @@ module MoneytrackTest
     {"hello"=>"world", "key2"=>"value2"},
     {"hello"=>"world", "key2"=>"value2", "another"=>"value"}
   ]
+
   blockchain = nil
   input.each { |newPayload|
     if blockchain.nil?
@@ -33,6 +34,7 @@ module MoneytrackTest
   rescue StandardError => e
     puts e.message
   end
+
 
   #
   # => test previous_block not found
@@ -64,8 +66,6 @@ module MoneytrackTest
     :payload_signature=>
      "094ff398fcdca678695f9c909ee45fd9c6b0e34a465355943064b2beb6098c60"},
   :payload=>{"hello"=>"world", "key2"=>"value2", "another"=>"value"}}]
-
-
 
   begin
     IntegrityCheckService.new(test).perform
@@ -109,7 +109,6 @@ module MoneytrackTest
   :payload=>{"hello"=>"world", "key1"=>"value1"}}
   ]
 
-
   begin
     IntegrityCheckService.new(test).perform
   rescue StandardError => e
@@ -151,14 +150,11 @@ module MoneytrackTest
        "094ff398fcdca678695f9c909ee45fd9c6b0e34a465355943064b2beb6098c60"},
     :payload=>{"hello"=>"world", "key2"=>"value2", "another"=>"value"}}]
 
-
   begin
     IntegrityCheckService.new(test).perform
   rescue StandardError => e
     puts e.message
   end
-
-
 
 
 #
@@ -193,7 +189,6 @@ module MoneytrackTest
       :payload_signature=>
        "094ff398fcdca678695f9c909ee45fd9c6b0e34a465355943064b2beb6098c60"},
     :payload=>{"hello"=>"world", "key2"=>"value2", "another"=>"value"}}]
-
 
   begin
     IntegrityCheckService.new(test).perform
