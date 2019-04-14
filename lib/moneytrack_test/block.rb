@@ -10,14 +10,8 @@ module MoneytrackTest
      end
 
      def check_block
-       if @signature != @header.make_signature
-         puts "ERROR: bockchain corrupt: header signature not correct"
-         exit();
-       end
-       if @header.payload_signature != @payload.sign
-         puts "ERROR: bockchain corrupt: Payload signature not correct"
-         exit();
-       end
+      raise StandardError.new("ERROR: bockchain corrupt: header signature not correct") if @signature != @header.make_signature
+      raise StandardError.new("ERROR: bockchain corrupt: Payload signature not correct") if @header.payload_signature != @payload.sign
      end
 
      def create(payload, previous_block)
